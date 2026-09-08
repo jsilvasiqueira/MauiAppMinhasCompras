@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppMinhasCompras.Views.ListaProduto"
+             Title="Minhas Compras">
+
+    <Grid Padding="20"
+          RowDefinitions="Auto,Auto,*"
+          RowSpacing="15">
+
+        <Button Grid.Row="0"
+                Text="Novo Produto"
+                Clicked="NovoProduto_Clicked" />
+
+        <SearchBar Grid.Row="1"
+                   x:Name="txt_busca"
+                   Placeholder="Pesquisar produto"
+                   TextChanged="txt_busca_TextChanged" />
+
+        <ListView Grid.Row="2"
+                  x:Name="lst_produtos"
+                  ItemSelected="lst_produtos_ItemSelected"
+                  HasUnevenRows="True">
+
+            <ListView.ItemTemplate>
+
+                <DataTemplate>
+
+                    <ViewCell>
+
+                        <Grid Padding="15"
+                              ColumnDefinitions="*,Auto"
+                              RowDefinitions="Auto,Auto,Auto">
+
+                            <Label Grid.Row="0"
+                                   Grid.Column="0"
+                                   Text="{Binding Descricao}"
+                                   FontAttributes="Bold"
+                                   FontSize="18" />
+
+                            <Label Grid.Row="1"
+                                   Grid.Column="0"
+                                   Text="{Binding Quantidade,
+                                   StringFormat='Quantidade: {0}'}" />
+
+                            <Label Grid.Row="2"
+                                   Grid.Column="0"
+                                   Text="{Binding Preco,
+                                   StringFormat='Preço: R$ {0:F2}'}" />
+
+                            <Button Grid.Row="0"
+                                    Grid.RowSpan="3"
+                                    Grid.Column="1"
+                                    Text="Excluir"
+                                    CommandParameter="{Binding}"
+                                    Clicked="Excluir_Clicked" />
+
+                        </Grid>
+
+                    </ViewCell>
+
+                </DataTemplate>
+
+            </ListView.ItemTemplate>
+
+        </ListView>
+
+    </Grid>
+
+</ContentPage>
